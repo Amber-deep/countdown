@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown</title>
+    <link rel="stylesheet" href="css/countdown.css">
+</head>
+<body class="bgcolor">
+    <!--section start-->
+    <section >
+        <div class="main">
+            <div class="innerclass" id="none">
+                <!-- <p id="show" style="z-index: 6;"></p> -->
+                <img src="images/one.jpg" width="80%">
+                <img src="images/three.jpg" width="80%">
+                <img src="images/two.webp" width="80%">
+                <p class="ss1" id="show1"></p>
+                <p class="ss2" id="show2"></p>
+                <p class="ss3" id="show3"></p>
+                <p class="ss4" id="show4"></p>
+
+            </div>
+            <p id="show" style="z-index: 6; text-align: center;"></p>
+        </div>
+        
+    </section>
+</body> 
+</html>
+    
+    <script>
+            const images = document.querySelectorAll("img");
+        i = 0;
+        function Interval(){
+
+        if(i == 0){
+            document.getElementsByTagName('img')[i].className = "u--fadeIn";
+        }
+
+        else if(i == images.length){
+            document.getElementsByTagName('img')[i-1].className = "u--fadeOut";
+            document.getElementsByTagName('img')[0].className = "u--fadeIn";
+            i=0;
+        }
+
+        else{
+            document.getElementsByTagName('img')[i-1].className = "u--fadeOut";
+            document.getElementsByTagName('img')[i].className = "u--fadeIn";
+        }
+
+        i++;
+    }
+
+    setInterval(Interval,2000);
+        var countdowndate = new Date("March 31, 2023 18:00:00").getTime();
+        var x = setInterval(function(){
+        var now = new Date().getTime();
+        var distance = countdowndate - now;
+        var days = Math.floor(distance/(1000*60*60*24));
+        var hours = Math.floor((distance%(1000*60*60*24)) / (1000*60*60));
+        var minutes = Math.floor((distance%(1000*60*60)) / (1000*60));
+        var seconds = Math.floor((distance%(1000*60)) / 1000);
+        days = days<10 ? '0' + days : days;
+        hours = hours<10 ? '0' + hours : hours;
+        minutes = minutes<10 ? '0' + minutes : minutes;
+        seconds = seconds<10 ? '0' + seconds : seconds;
+        document.getElementById('show1').innerHTML = days + "d";
+        document.getElementById('show2').innerHTML = hours +"h";
+        document.getElementById('show3').innerHTML = minutes +"m";
+        document.getElementById('show4').innerHTML = seconds +"s";
+        // document.getElementById('show').innerHTML = days + "d" + hours + "h" + minutes + "m" +seconds + "s";
+        if(distance<0){
+            clearInterval(x);
+            document.getElementById('none').style.display = "none";
+            document.getElementById('show').innerHTML = "expired";
+
+        }
+        },1000);
+    </script>
+</body>
+</html>
